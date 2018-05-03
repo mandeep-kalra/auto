@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="idiscover.me">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="./assets/image-resources/favicon.ico" sizes="16x16">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>iDiscover.me</title>
+
+		<!-- Bootstrap -->
+	<link rel="stylesheet" href="styles/main-4d1d55f9f8.css"/>
+		
+		<style>
+			/* Loading Spinner */
+			.spinner{margin:0;width:70px;height:18px;margin:-35px 0 0 -9px;position:absolute;top:50%;left:50%;text-align:center}
+			.spinner > div{width:18px;height:18px;background-color:#333;border-radius:100%;display:inline-block;-webkit-animation:bouncedelay 1.4s infinite ease-in-out;animation:bouncedelay 1.4s infinite ease-in-out;-webkit-animation-fill-mode:both;animation-fill-mode:both}
+			.spinner .bounce1{-webkit-animation-delay:-.32s;animation-delay:-.32s}
+			.spinner .bounce2{-webkit-animation-delay:-.16s;animation-delay:-.16s}
+			@-webkit-keyframes bouncedelay{0%,80%,100%{-webkit-transform:scale(0.0)}40%{-webkit-transform:scale(1.0)}}
+			@keyframes bouncedelay{0%,80%,100%{transform:scale(0.0);-webkit-transform:scale(0.0)}40%{transform:scale(1.0);-webkit-transform:scale(1.0)}}
+	
+			.avatar-circle {
+			  text-align: center;
+			  border-radius: 100%;
+			  -webkit-border-radius: 100%;
+			  -moz-border-radius: 100%;
+			}
+
+			.initials {
+			  position: relative;
+			  line-height: 50px; /* 50% of parent */
+			  font-family: "Courier New", monospace;
+			  font-weight: bold;
+			}
+			
+			.avatar-big {
+			  background-color: #7986CB;
+			  height: 70px;
+			  width: 70px;
+			}
+			
+			.avatar-small {
+			  background-color: #fff;
+			  height: 35px;
+			  width: 35px;
+			  margin-top: 0px;
+			}
+			
+			.ini-big {
+			  color: #fff;
+			  top: 11px; /* 25% of parent */
+			  font-size: 40px; /* 50% of parent */
+			}
+			
+			.ini-small {
+			  color: #7986CB;
+			  top: -7px; /* 25% of parent */
+			  left: 5px; /* 25% of parent */
+			  font-size: 20px; /* 50% of parent */
+			}
+
+						.alert {
+							border: 0;
+							border-radius: 0;
+							position: relative;
+							padding: 20px 15px;
+							line-height: 20px;
+						}
+
+						.alert b {
+							font-weight: 500;
+							text-transform: uppercase;
+							font-size: 12px;
+						}
+
+						.alert,
+						.alert.alert-default {
+							background-color: white;
+							color: #555555;
+							border-radius: 3px;
+							box-shadow: 0 12px 20px -10px rgba(255, 255, 255, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 255, 255, 0.2);
+						}
+
+						.alert a,
+						.alert .alert-link,
+						.alert.alert-default a,
+						.alert.alert-default .alert-link {
+							color: #555555;
+						}
+
+						.alert.alert-inverse {
+							background-color: #2e2e2e;
+							color: #fff;
+							border-radius: 3px;
+							box-shadow: 0 12px 20px -10px rgba(33, 33, 33, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(33, 33, 33, 0.2);
+						}
+
+						.alert.alert-inverse a,
+						.alert.alert-inverse .alert-link {
+							color: #fff;
+						}
+
+						.alert.alert-primary {
+							background-color: #af2cc5;
+							color: #ffffff;
+							border-radius: 3px;
+							box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
+						}
+
+						.alert.alert-primary a,
+						.alert.alert-primary .alert-link {
+							color: #ffffff;
+						}
+
+						.alert.alert-success {
+							background-color: #5cb860;
+							color: #ffffff;
+							border-radius: 3px;
+							box-shadow: 0 12px 20px -10px rgba(76, 175, 80, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(76, 175, 80, 0.2);
+						}
+
+						.alert.alert-success a,
+						.alert.alert-success .alert-link {
+							color: #ffffff;
+						}
+
+						.alert.alert-info {
+							background-color: #00d3ee;
+							color: #ffffff;
+							border-radius: 3px;
+							box-shadow: 0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2);
+						}
+
+						.alert.alert-info a,
+						.alert.alert-info .alert-link {
+							color: #ffffff;
+						}
+
+						.alert.alert-warning {
+							background-color: #ffa21a;
+							color: #ffffff;
+							border-radius: 3px;
+							box-shadow: 0 12px 20px -10px rgba(255, 152, 0, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2);
+						}
+
+						.alert.alert-warning a,
+						.alert.alert-warning .alert-link {
+							color: #ffffff;
+						}
+
+						.alert.alert-danger {
+							background-color: #f55a4e;
+							color: #ffffff;
+							border-radius: 3px;
+							box-shadow: 0 12px 20px -10px rgba(244, 67, 54, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(244, 67, 54, 0.2);
+						}
+
+						.alert.alert-danger a,
+						.alert.alert-danger .alert-link {
+							color: #ffffff;
+						}
+
+						.alert.alert-rose {
+							background-color: #eb3573;
+							color: #ffffff;
+							border-radius: 3px;
+							box-shadow: 0 12px 20px -10px rgba(233, 30, 99, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(233, 30, 99, 0.2);
+						}
+
+						.alert.alert-rose a,
+						.alert.alert-rose .alert-link {
+							color: #ffffff;
+						}
+
+						.alert-info,
+						.alert-danger,
+						.alert-warning,
+						.alert-success {
+							color: #ffffff;
+						}
+
+						.alert-default a,
+						.alert-default .alert-link {
+							color: rgba(0, 0, 0, 0.87);
+						}
+
+						.alert i[data-notify="icon"] {
+							font-size: 28px;
+							display: block;
+							left: 15px;
+							position: absolute;
+							top: 50%;
+							margin-top: -15px;
+						}
+
+						.alert span {
+							display: block;
+							max-width: 89%;
+						}
+
+						.alert .alert-icon {
+							display: block;
+							float: left;
+							margin-right: 15px;
+						}
+
+						.alert .alert-icon i {
+							margin-top: -7px;
+							top: 5px;
+							position: relative;
+						}
+
+						.alert.alert-with-icon {
+							padding-left: 65px;
+						}
+						
+						.w3-animate-left{position:relative;animation:animateleft 0.4s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}
+			
+						.w3-animate-top{position:relative;animation:animatetop 0.4s}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
+			
+			.angular-tooltip{
+				position:absolute;
+				background:#000;
+				z-index:9999;
+				padding:3px;
+				border:2px solid #000;
+				color:#FFF;
+				pointer-events:none;
+				-webkit-user-select:none;
+				-moz-user-select:none;
+				-ms-user-select:none;
+				user-select:none;
+				max-width:250px;
+				border-radius:3px
+			}
+			
+			.angular-tooltip:after,.angular-tooltip:before{
+				border:solid transparent;
+				content:" ";
+				height:0;
+				width:0;
+				position:absolute;
+				pointer-events:none
+			}
+			
+			.angular-tooltip:before{
+				border-color:transparent;
+				border-width:8px
+			}
+			
+			.angular-tooltip:after{
+				border-color:transparent;
+				border-width:5px
+			}
+			
+			.angular-tooltip.angular-tooltip-top-center:after,.angular-tooltip.angular-tooltip-top-center:before,.angular-tooltip.angular-tooltip-top-middle:after,.angular-tooltip.angular-tooltip-top-middle:before,.angular-tooltip.angular-tooltip-top:after,.angular-tooltip.angular-tooltip-top:before{
+				top:100%;left:50%
+			}
+			
+			.angular-tooltip.angular-tooltip-top-center:before,.angular-tooltip.angular-tooltip-top-middle:before,.angular-tooltip.angular-tooltip-top:before{
+				margin-left:-8px;border-top-color:#000
+			}
+			
+			.angular-tooltip.angular-tooltip-top-center:after,.angular-tooltip.angular-tooltip-top-middle:after,.angular-tooltip.angular-tooltip-top:after{
+				margin-left:-5px;border-top-color:#000
+			}
+			
+			.angular-tooltip.angular-tooltip-top-right:after,.angular-tooltip.angular-tooltip-top-right:before{
+				top:100%;right:calc(100% - 8px)
+			}
+			
+			.angular-tooltip.angular-tooltip-top-right:before{
+				margin-right:-8px;border-top-color:#000
+			}
+			
+			.angular-tooltip.angular-tooltip-top-right:after{
+				margin-right:-5px;border-top-color:#000
+			}
+		
+		div {
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		
+		.tab-slider--tabs{
+			border: 0.5px solid #ffb74d;
+			display: block;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			position: relative;
+			border-radius: 35px;
+			overflow: hidden;
+			background: #fff;
+			user-select: none;
+		}
+			
+			.age-sel {
+				font-size: 40px;
+				border-radius: 5px;
+			}
+			.age-hover:hover {
+				background: #eee;
+			}
+			
+			.age-selected {
+				box-shadow: 0 12px 20px -10px rgba(255, 255, 255, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 255, 255, 0.2);
+				color: white;
+				background: orange;
+			}
+		</style>
+		
+		<!-- Favicons -->
+
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+		<!-- HELPERS -->
+
+		<link rel="stylesheet" type="text/css" href="./assets/helpers/animate.css">
+		<link rel="stylesheet" type="text/css" href="./assets/helpers/backgrounds.css">
+		<link rel="stylesheet" type="text/css" href="./assets/helpers/boilerplate.css">
+		<link rel="stylesheet" type="text/css" href="./assets/helpers/border-radius.css">
+		<link rel="stylesheet" type="text/css" href="./assets/helpers/grid.css">
+		<link rel="stylesheet" type="text/css" href="./assets/helpers/page-transitions.css">
+		<link rel="stylesheet" type="text/css" href="./assets/helpers/spacing.css">
+		<link rel="stylesheet" type="text/css" href="./assets/helpers/typography.css">
+		<link rel="stylesheet" type="text/css" href="./assets/helpers/utils.css">
+		<link rel="stylesheet" type="text/css" href="./assets/helpers/colors.css">
+
+		<!-- ELEMENTS -->
+
+		<link rel="stylesheet" type="text/css" href="./assets/elements/badges.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/buttons.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/content-box.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/dashboard-box.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/forms.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/images.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/info-box.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/invoice.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/loading-indicators.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/menus.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/panel-box.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/response-messages.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/responsive-tables.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/ribbon.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/social-box.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/tables.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/tile-box.css">
+		<link rel="stylesheet" type="text/css" href="./assets/elements/timeline.css">
+
+		<!-- ICONS -->
+
+		<link rel="stylesheet" type="text/css" href="./assets/icons/fontawesome/fontawesome.css">
+		<link rel="stylesheet" type="text/css" href="./assets/icons/linecons/linecons.css">
+		<link rel="stylesheet" type="text/css" href="./assets/icons/spinnericon/spinnericon.css">
+
+		<!-- WIDGETS -->
+
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/accordion-ui/accordion.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/calendar/calendar.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/carousel/carousel.css">
+
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/charts/justgage/justgage.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/charts/morris/morris.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/charts/piegage/piegage.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/charts/xcharts/xcharts.css">
+
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/chosen/chosen.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/colorpicker/colorpicker.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/datatable/datatable.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/datepicker/datepicker.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/datepicker-ui/datepicker.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/daterangepicker/daterangepicker.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/dialog/dialog.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/dropdown/dropdown.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/dropzone/dropzone.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/file-input/fileinput.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/input-switch/inputswitch.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/input-switch/inputswitch-alt.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/ionrangeslider/ionrangeslider.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/jcrop/jcrop.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/jgrowl-notifications/jgrowl.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/loading-bar/loadingbar.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/maps/vector-maps/vectormaps.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/markdown/markdown.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/modal/modal.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/multi-select/multiselect.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/multi-upload/fileupload.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/nestable/nestable.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/noty-notifications/noty.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/popover/popover.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/pretty-photo/prettyphoto.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/progressbar/progressbar.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/range-slider/rangeslider.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/slidebars/slidebars.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/slider-ui/slider.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/summernote-wysiwyg/summernote-wysiwyg.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/tabs-ui/tabs.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/theme-switcher/themeswitcher.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/timepicker/timepicker.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/tocify/tocify.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/touchspin/touchspin.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/uniform/uniform.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/wizard/wizard.css">
+		<link rel="stylesheet" type="text/css" href="./assets/widgets/xeditable/xeditable.css">
+
+		<!-- SNIPPETS -->
+
+		<link rel="stylesheet" type="text/css" href="./assets/snippets/chat.css">
+		<link rel="stylesheet" type="text/css" href="./assets/snippets/files-box.css">
+		<link rel="stylesheet" type="text/css" href="./assets/snippets/login-box.css">
+		<link rel="stylesheet" type="text/css" href="./assets/snippets/notification-box.css">
+		<link rel="stylesheet" type="text/css" href="./assets/snippets/progress-box.css">
+		<link rel="stylesheet" type="text/css" href="./assets/snippets/todo.css">
+		<link rel="stylesheet" type="text/css" href="./assets/snippets/user-profile.css">
+		<link rel="stylesheet" type="text/css" href="./assets/snippets/mobile-navigation.css">
+
+		<!-- Admin theme -->
+
+		<link rel="stylesheet" type="text/css" href="./assets/themes/admin/layout.css">
+		<link rel="stylesheet" type="text/css" href="./assets/themes/admin/color-schemes/default.css">
+
+		<!-- Components theme -->
+
+		<link rel="stylesheet" type="text/css" href="./assets/themes/components/default.css">
+		<link rel="stylesheet" type="text/css" href="./assets/themes/components/border-radius.css">
+
+		<!-- Admin responsive -->
+
+		<link rel="stylesheet" type="text/css" href="./assets/helpers/responsive-elements.css">
+		<link rel="stylesheet" type="text/css" href="./assets/helpers/admin-responsive.css">
+		
+	</head>
+
+	<body>
+		<div ui-view="header"></div>
+		<div ui-view="content"></div>
+
+	<script src="scripts/main-e724e94d84.js"></script>
+
+	</body>
+   
+</html>

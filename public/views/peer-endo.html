@@ -1,0 +1,194 @@
+<style>
+        .left_border_str{
+            border-left:10px solid #00b0ff;
+        }
+        .left_border_prt{
+            border-left:10px solid #ffb74d;
+        }
+        .left_border_weak{
+            border-left:10px solid #999;
+        }
+		
+		.mini_style{
+			border: 1px solid #dedede;
+			border-radius: 25px;
+			margin: 5px;
+			padding: 10px;
+			font-size: 14px;
+		}
+		
+		.mini_style:hover{
+			border-color: #ccc;
+			background: #efefef;
+		}
+		
+		.endorsed_tab {
+			background: #eeffc0;
+		}
+</style>
+
+<div class="wrapper" ng-show="!verified" style="position: fixed; width: 100%; text-align: center; margin-top: 18%;">
+	<input class="form-control" type="text" ng-model="v_id" placeholder="Enter Your Email-ID" style="text-align: center; font-size: 25px;"><br><br>
+	<button class="btn btn-warning" ng-click="checkVerification()" ng-disabled="!v_id">Verify</button><br><br>
+	<span style="color: red;"><b>{{success.message}}</b></span>
+</div>
+
+<span ng-show="loading && verified">
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>    
+</span>
+
+<div id="sb-site" ng-show="!loading && verified">
+	
+        <div id="page-wrapper">
+            
+            <div id="page-content-wrapper">
+                <div id="page-content" style="margin-bottom: 30px;">
+                
+					<!--<button class="btn btn-success" ng-click="printPDF()">Download PDF</button>-->
+					
+					<div id="page-title">
+						<h2><b>{{userData.fullname}}'s Trueself Profile</b></h2>
+					</div>
+					
+					<div class="container">
+						<link rel="stylesheet" type="text/css" href="./assets/pv.css">
+						
+						<div class="row">
+                            <div class="col-md-offset-2 col-md-2">
+
+                                <div class="panel">
+                                    <div class="panel-heading" ng-class="'left_border_str'">
+                                        Exhibit Strongly
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                            <div class="col-md-offset-1 col-md-2">
+
+                                <div class="panel">
+                                    <div class="panel-heading" ng-class="'left_border_prt'">
+                                        Exhibit Partially
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                            <div class="col-md-offset-1 col-md-2">
+
+                                <div class="panel">
+                                    <div class="panel-heading" ng-class="'left_border_weak'">
+                                        Exhibit Weakly
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                        </div>
+						
+						<div class="panel" style="width: 90%; margin: 20px auto;">
+                            <div class="panel-body" style="padding: 15px 5%; font-size: 16px;">
+								<span style="font-weight: bold;">Instruction - </span><br>
+								1. Select those traits which {{userData.fullname}} exhibits.
+							</div>
+						</div>
+						
+<!--                                                    SECTION 1                                                          -->
+                        <div class="panel" style="width: 90%; margin: 20px auto;">
+                            <div class="panel-body" style="text-align:center; padding: 15px 5%;">
+                                <h2 id="page-title">
+                                    <b>Professional Strengths</b>
+                                </h2>
+								
+								<h5 style="color: #444; padding: 20px; font-weight: bold;">{{userData.eachSectionStopReflect[0]}}</h5>
+								
+								<div class="row">
+									<div class="col-md-4" ng-repeat="keys in userData.polarities" ng-if="keys.strength_rating != 0" style="margin: 10px auto; padding: 10px; display: inline-block;">
+										
+										<div class="col-md-12 row" style="margin: 0 auto; border: 1px solid #ddd; border-radius: 25px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05); padding: 10px; cursor: pointer;" ng-click="doEndorse(keys.polar_id, 1)" ng-class="checkEndorse(keys.polar_id, 1) ? 'endorsed_tab':''">
+											
+											<div class="col-md-3" style="margin: auto 0;">
+												<div class="c1002 small">
+													<div class="c100 small" ng-class="(keys.strength_rating >= 0 && keys.strength_rating <= 0.5) ? 'p33 grey' : ((keys.strength_rating > 0.5 && keys.strength_rating <= 1) ? 'p66 orange' : 'p100 blue')">
+														<span style="margin-top: 7px;" ng-show="checkEndorse(keys.polar_id, 1)">
+															<i class="material-icons" style="color: #00C851; font-weight: bold;">check</i>
+														</span>
+														<div class="slice">
+															<div class="bar"></div>
+															<div class="fill"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-9" style="margin: auto 0;">
+												<div class="col-md-12" style="font-size: 18px; font-weight: bold;">{{keys.strength}}</div>
+												<div class="col-md-12">{{keys.mini_strengths[0].mini_statement}}</div>
+											</div>
+											
+										</div>
+										
+									</div>
+								</div>
+                            </div>
+                        </div>
+<!--                                                    SECTION 2                                                          -->
+                        <div class="panel" style="width: 90%; margin: 20px auto;">
+                            <div class="panel-body" style="text-align:center; padding: 15px 5%;">
+                                <h2 id="page-title">
+                                    <b>Learning Needs</b>
+                                </h2>
+								
+								<h5 style="color: #444; padding: 20px; font-weight: bold;">{{userData.eachSectionStopReflect[1]}}</h5>
+								
+								<div class="row">
+									<div class="col-md-4" ng-repeat="keys in userData.polarities" ng-if="keys.learning_rating != 0" style="margin: 10px auto; padding: 10px; display: inline-block;">
+										
+										<div class="col-md-12 row" style="margin: 0 auto; border: 1px solid #ddd; border-radius: 25px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05); padding: 10px; cursor: pointer;" ng-click="doEndorse(keys.polar_id, 2)" ng-class="checkEndorse(keys.polar_id, 2) ? 'endorsed_tab':''">
+											
+											<div class="col-md-3" style="margin: auto 0;">
+												<div class="c1002 small">
+													<div class="c100 small" ng-class="(keys.learning_rating >= 0 && keys.learning_rating <= 0.5) ? 'p33 grey' : ((keys.learning_rating > 0.5 && keys.learning_rating <= 1) ? 'p66 orange' : 'p100 blue')">
+														<span style="margin-top: 7px;" ng-show="checkEndorse(keys.polar_id, 2)">
+															<i class="material-icons" style="color: #00C851; font-weight: bold;">check</i>
+														</span>
+														<div class="slice">
+															<div class="bar"></div>
+															<div class="fill"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-9" style="margin: auto 0;">
+												<div class="col-md-12" style="font-size: 18px; font-weight: bold;">{{keys.learning}}</div>
+												<div class="col-md-12">{{keys.mini_learnings[0].mini_statement}}</div>
+											</div>
+											
+										</div>
+										
+									</div>
+								</div>
+                            </div>
+                        </div>
+						
+						<div class="panel" style="width: 90%; margin: 20px auto;">
+                            <div class="panel-body" style="padding: 15px 5%;">
+								<span style="font-weight: bold; font-size: 16px;">What do you want to say about {{userData.fullname}} ?</span><br><br>
+								<textarea class="form-control" ng-model="userData.peer_reviewer_data.recommendation"></textarea>
+							</div>
+						</div>
+						
+						<div style="text-align: center;">
+							<button class="btn btn-danger" ng-click="submitEndorse()" style="margin-top: 20px;">Submit</button>
+						</div>
+						
+							
+					</div>
+					
+                </div>
+            </div>
+        </div>
+</div>

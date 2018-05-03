@@ -1,0 +1,234 @@
+    <style>
+    
+        .left_border_str{
+            border-left:10px solid #00b0ff;
+        }
+        .left_border_prt{
+            border-left:10px solid #ffb74d;
+        }
+        .left_border_weak{
+            border-left:10px solid #999;
+        }
+		
+		.mini_style{
+			border: 1px solid #dedede;
+			border-radius: 25px;
+			margin: 5px;
+			padding: 10px;
+			font-size: 14px;
+		}
+		
+		.mini_style:hover{
+			border-color: #ccc;
+			background: #efefef;
+		}
+    </style>
+
+<span ng-show="loading">
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>    
+</span>
+
+<div id="sb-site" ng-show="!loading">
+	
+        <div id="page-wrapper">
+            
+            <div id="page-content-wrapper">
+				
+                <div id="page-content" style="margin-bottom: 30px;" ng-show="!reviewScreen">
+					
+					<div id="page-title">
+						<h2><b>{{userData.personal_info.fullname}}'s Trueself Profile</b></h2>
+					</div>
+					
+					<div class="container">
+						<link rel="stylesheet" type="text/css" href="./assets/pv.css">
+						
+						<div class="row">
+                            <div class="col-md-offset-2 col-md-2">
+
+                                <div class="panel">
+                                    <div class="panel-heading" ng-class="'left_border_str'">
+                                        Exhibit Strongly
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                            <div class="col-md-offset-1 col-md-2">
+
+                                <div class="panel">
+                                    <div class="panel-heading" ng-class="'left_border_prt'">
+                                        Exhibit Partially
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                            <div class="col-md-offset-1 col-md-2">
+
+                                <div class="panel">
+                                    <div class="panel-heading" ng-class="'left_border_weak'">
+                                        Exhibit Weakly
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                        </div>
+						
+<!--                                                    SECTION 1                                                          -->
+                        <div class="panel" style="width: 90%; margin: 20px auto;">
+                            <div class="panel-body" style="text-align:center; padding: 15px 5%;">
+                                <h2 id="page-title">
+                                    <b>Professional Strengths</b>
+                                </h2>
+								
+								<h5 style="color: #444; padding: 20px; font-weight: bold;">{{userData.profile.eachSectionStopReflect[0]}}</h5>
+								
+								<div class="row">
+									<div class="col-md-4" ng-repeat="keys in userData.polarities" ng-if="keys.strength_rating != 0" style="margin: 10px auto; padding: 10px; display: inline-block;">
+										
+										<div class="col-md-12 row" style="margin: 0 auto; border: 1px solid #ddd; border-radius: 25px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05); padding: 10px;">
+											
+											<div class="col-md-3" style="margin: auto 0;">
+												<div class="c1002 small">
+													<div class="c100 small" ng-class="(keys.strength_rating >= 0 && keys.strength_rating <= 0.5) ? 'p33 grey' : ((keys.strength_rating > 0.5 && keys.strength_rating <= 1) ? 'p66 orange' : 'p100 blue')">
+														<span style="color: #777; font-weight: bold;">{{keys.strength_endorsement}}</span>
+														<div class="slice">
+															<div class="bar"></div>
+															<div class="fill"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-9" style="margin: auto 0;">
+												<div class="col-md-12" style="font-size: 18px; font-weight: bold;">{{keys.strength}}</div>
+												<div class="col-md-12">{{keys.mini_strengths[0].mini_statement}}</div>
+											</div>
+											
+										</div>
+										
+									</div>
+								</div>
+                            </div>
+                        </div>
+<!--                                                    SECTION 2                                                          -->
+                        <div class="panel" style="width: 90%; margin: 20px auto;">
+                            <div class="panel-body" style="text-align:center; padding: 15px 5%;">
+                                <h2 id="page-title">
+                                    <b>Learning Needs</b>
+                                </h2>
+								
+								<h5 style="color: #444; padding: 20px; font-weight: bold;">{{userData.profile.eachSectionStopReflect[1]}}</h5>
+								
+								<div class="row">
+									<div class="col-md-4" ng-repeat="keys in userData.polarities" ng-if="keys.learning_rating != 0" style="margin: 10px auto; padding: 10px; display: inline-block;">
+										
+										<div class="col-md-12 row" style="margin: 0 auto; border: 1px solid #ddd; border-radius: 25px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05); padding: 10px;">
+											
+											<div class="col-md-3" style="margin: auto 0;">
+												<div class="c1002 small">
+													<div class="c100 small" ng-class="(keys.learning_rating >= 0 && keys.learning_rating <= 0.5) ? 'p33 grey' : ((keys.learning_rating > 0.5 && keys.learning_rating <= 1) ? 'p66 orange' : 'p100 blue')">
+														<span style="color: #777; font-weight: bold;">{{keys.learning_endorsement}}</span>
+														<div class="slice">
+															<div class="bar"></div>
+															<div class="fill"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-9" style="margin: auto 0;">
+												<div class="col-md-12" style="font-size: 18px; font-weight: bold;">{{keys.learning}}</div>
+												<div class="col-md-12">{{keys.mini_learnings[0].mini_statement}}</div>
+											</div>
+											
+										</div>
+										
+									</div>
+								</div>
+                            </div>
+							
+                        </div>
+						
+						<div class="panel" style="width: 90%; margin: 20px auto;">
+                            <div class="panel-body" style="padding: 15px 5%;">
+								<span style="font-weight: bold; font-size: 17px;">Recommendations by Peer</span><br><br>
+								<ul>
+									<li ng-repeat="rec in userData.peer_reviews" style="font-size: 16px; margin: 25px 0px;">
+										<span style="font-weight: bold;">{{replaceWithName(rec.emailid)}} says -</span><br>
+										" {{rec.recommendation}} "<br>
+										<span style="float: right;"><i>- {{rec.last_modified | date:'medium'}}</i></span>
+									</li>
+								</ul>
+							</div>
+						</div>
+						
+						<div style="text-align: center;">
+							<button class="btn btn-info" style="margin-top: 20px;" ng-click="reviewScreen = true">Peer Endorse</button>
+						</div>
+							
+					</div>
+                </div>
+				
+<!-----------------------------------------------------------PEER REVIEW-------------------------------------------------------------------->
+						
+					<div class="container" ng-show="reviewScreen" style="margin-top: 30px;">
+						<div style="display: block; width: 22%; margin: 0 auto; z-index: 10000;" ng-show="success.success == true" class="w3-animate-top">
+							<div class="alert alert-success alert-with-icon" data-notify="container" style="position: fixed; margin-top: 20px; width: 300px; text-align: center;">
+								<i data-notify="icon" class="material-icons">info</i>
+								<span data-notify="message">{{success.message}}</span>
+							</div>
+						</div>
+						<div id="page-title" style="text-align: center;">
+							<a href="" ng-click="reviewScreen = false"><h6>Back to Trueself View</h6></a><br>
+							<h2>Enter Details of Peer Reviewer(s)</h2>
+						</div>
+
+                        <br>
+						
+						<div class="row panel">
+							<div class="col-md-12 panel-body" style="margin: 0 auto; text-align: center;">
+								<div class="col-md-2" style="text-align: right;">Name: </div>
+								<div class="col-md-2" style="text-align: left;"><input type="text" width="100%" ng-model="reviewer.name"></div>
+								
+								<div class="col-md-2" style="text-align: right;">Relationship: </div>
+								<div class="col-md-2" style="text-align: left;"><input type="text" width="100%" ng-model="reviewer.relationship"></div>
+								
+								<div class="col-md-2" style="text-align: right;">Email-ID: </div>
+								<div class="col-md-2" style="text-align: left;"><input type="text" width="100%" ng-model="reviewer.emailid"></div>
+								<br><br><br>
+								<button class="btn btn-success" ng-click="addReviewer()" ng-disabled="!(reviewer.name && reviewer.relationship && reviewer.emailid)">Add to List</button>
+							</div>
+						</div>
+						
+						<div id="page-title" style="text-align: center;" ng-show="reviewers.length != 0">
+							<h2>Recipients to Review</h2>
+						</div>
+						<div class="row panel" ng-show="reviewers.length != 0">
+							<div class="col-md-12 panel-body" style="margin: 0 auto; text-align: center;">
+								
+								<span ng-repeat="rec in reviewers">
+									<h5><b>Reviewer #{{$index+1}}</b></h5><br>
+									<div class="col-md-2" style="text-align: right;">Name: </div>
+									<div class="col-md-2" style="text-align: left;"><input type="text" width="100%" ng-model="rec.name"></div>
+									
+									<div class="col-md-2" style="text-align: right;">Relationship: </div>
+									<div class="col-md-2" style="text-align: left;"><input type="text" width="100%" ng-model="rec.relationship"></div>
+									
+									<div class="col-md-2" style="text-align: right;">Email-ID: </div>
+									<div class="col-md-2" style="text-align: left;"><input type="text" width="100%" ng-model="rec.emailid"></div>
+									<br><br>
+								</span>
+								<br>
+								<button class="btn btn-danger" ng-click="submitReviewer()">Send Mail</button>
+							</div>
+						</div>
+					</div>
+				
+            </div>
+        </div>
+</div>

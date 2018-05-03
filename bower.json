@@ -1,0 +1,47 @@
+{
+  "name": "iDiscover.me",
+  "version": "1.0.0",
+  "description": "Assessment",
+  "main": "IDM",
+  "moduleType": [],
+  "keywords": [
+      "Assessment","Leadership"
+  ],
+  "author": "Avinash Sharma",
+  "license": "UNLICENSED",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.5",
+    "angular-ui-router": "~0.2.18",
+    "angular-mocks": "~1.5.5",
+    "angular-resource": "~1.5.5",
+    "angular-route": "~1.5.5",
+    "bootstrap": "~3.3.6",
+    "font-awesome": "fontawesome#~4.6.1",
+    "ng-dialog": "~0.6.0"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        //"dist/styles/bootstrap.css",
+        //"dist/scripts/bootstrap.js"
+      ]
+    },
+    "font-awesome": {
+      "main": [
+        //"css/font-awesome.css"
+      ]
+    }
+  },
+  "resolutions": {
+    "angular": "~1.5.5"
+  },
+    "repository": ""
+}
