@@ -110,7 +110,30 @@ var userSchema = new Schema({
 		}
 	},
 	peer_reviewers: [new Schema({name: String, emailid: String, relationship: String, date: Date})],
-	peer_reviews: [new Schema({emailid: String, reviews: Array, last_modified: Date, recommendation: String})]
+	peer_reviews: [new Schema({emailid: String, reviews: Array, last_modified: Date, recommendation: String})],
+    feedback: {
+        submitted: {
+            type: Boolean,
+            default: false
+        },
+		q1: String,
+		q2: String,
+		q2_detailed: String,
+		q3: {
+			a1: Boolean,
+			a2: Boolean,
+			a3: Boolean,
+			a4: Boolean,
+			s1: String,
+			s2: String,
+			s3: String,
+			s4: String
+		},
+		q4: String,
+		q5: String,
+		q6: String,
+		q7: String
+    }
 });
 
 module.exports = mongoose.model('Users', userSchema);

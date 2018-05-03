@@ -43,6 +43,13 @@
 
 <div id="sb-site" ng-show="!loading && verified">
 	
+	<div style="display: block; width: 22%; margin: 0 auto; z-index: 10000;" ng-show="success.message == 'Review Submitted !'" class="w3-animate-top">
+		<div class="alert alert-success alert-with-icon" data-notify="container" style="position: fixed; margin-top: 20px; width: 300px; text-align: center;">
+			<i data-notify="icon" class="material-icons">check_circle</i>
+			<span data-notify="message">Progress Saved !</span>
+		</div>
+	</div>
+	
         <div id="page-wrapper">
             
             <div id="page-content-wrapper">

@@ -1,0 +1,158 @@
+<style>
+	.center-panel
+	{	width: 70%;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.checked {
+		color: orange;
+	}
+</style>
+
+<span ng-show="loading">
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>    
+</span>
+
+<div id="sb-site" ng-show="!loading">
+        
+    <div id="page-wrapper">
+        
+        <div id="page-content-wrapper">
+            <div id="page-content">
+                
+                    <div class="container">
+                   
+						<div id="page-title">
+							<h2>Profile Synthesis</h2>
+						</div>
+						
+						<div class="row">
+							<div class="col-md-12">
+								<div class="panel center-panel">
+									<div class="panel-body">
+
+										<div class="example-box-wrapper">
+											<form class="form-horizontal" role="form" style="padding: 0px 30px 0px 30px;">
+												<div class="form-group">
+													<label for="q1" class="control-label">1. How much time in total did you spend creating your TrueSelf profile?</label>
+													<div class="input-prepend input-group">
+														<select class="form-control" style="height: 100%;" ng-model="userFB.feedback.q1" name="q1">
+															<option value="Less than 30 min">Less than 30 min</option> 
+															<option value="30 min - 1 hour">30 min - 1 hour</option> 
+															<option value="1 hour - 1.5 hour">1 hour - 1.5 hour</option> 
+															<option value="1.5 hour - 2 hours">1.5 hour - 2 hours</option> 
+															<option value="More than 2 hours">More than 2 hours</option> 
+														</select>
+														<!--<textarea rows="1" class="form-control" ng-model="userFB.feedback.q1" name="q1"></textarea>-->
+													</div>
+													<span ng-if="!userFB.feedback.q1 && btn_press" style="color:red;">-- Kindly provide the above information --</span>
+												</div>
+												<div class="form-group">
+													<label for="q2" class="control-label">2. How closely does the profile created by you describe you as a person - to someone reading, who doesn't know you prior?</label>
+													<div class="input-prepend input-group">
+														<select class="form-control" style="height: 100%;" ng-model="userFB.feedback.q2" name="q2">
+															<option value="Below 50%">Below 50% (I could not relate to it much)</option> 
+															<option value="70% - 80%">70% - 80% (Relate to great extent)</option> 
+															<option value="80% - 90%">80% - 90% (Relate very closely)</option> 
+															<option value="Above 90">Above 90% (Relate fully)</option>                
+														</select>
+													</div>
+													<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 5px;" ng-if="userFB.feedback.q2 != 'Above 90' && userFB.feedback.q2">
+														<textarea class="form-control" ng-model="userFB.feedback.q2_detailed" placeholder="Why do you think that the profile describes you only '{{userFB.feedback.q2}}' percentage? Please share which aspects of your personality did not get covered in the profile." rows="2"></textarea>
+													</div>
+													<span ng-if="!userFB.feedback.q2 && btn_press" style="color:red;">-- Kindly provide the above information --</span>
+												</div>
+												<div class="form-group">
+													<label for="q3" class="control-label">3. In what aspects do you think this exercise helped you (choose more than one option if applicable)?</label>
+													<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+														<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+															<input type="checkbox" name="q3.a1" ng-model="userFB.feedback.q3.a1" style="margin: 5px 16px 0 16px;" ng-change="userFB.feedback.q3.a1 ? '':userFB.feedback.q3.a4=false"> Awareness of my strengths and learning needs
+														</div>
+														<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+															<textarea class="form-control" ng-model="userFB.feedback.q3.s1" placeholder="What specific aspects did you learn in this?" rows="1" ng-show="userFB.feedback.q3.a1"></textarea>
+														</div>
+													</div>
+													<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+														<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+															<input type="checkbox" name="q3" ng-model="userFB.feedback.q3.a2" style="margin: 5px 16px 0 16px;" ng-change="userFB.feedback.q3.a2 ? '':userFB.feedback.q3.a4=false"> Insight into working together in a team
+														</div>
+														<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+															<textarea class="form-control" ng-model="userFB.feedback.q3.s2" placeholder="What specific aspects did you learn in this?" rows="1" ng-show="userFB.feedback.q3.a2"></textarea>
+														</div>
+													</div>
+													<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+														<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+															<input type="checkbox" name="q3" ng-model="userFB.feedback.q3.a3" style="margin: 5px 16px 0 16px;" ng-change="userFB.feedback.q3.a3 ? '':userFB.feedback.q3.a4=false"> Understanding how I have grown over last few years
+														</div>
+														<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+															<textarea class="form-control" ng-model="userFB.feedback.q3.s3" placeholder="What specific aspects did you learn in this?" rows="1" ng-show="userFB.feedback.q3.a3"></textarea>
+														</div>
+													</div>
+													<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+														<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+															<input type="checkbox" name="q3" ng-model="userFB.feedback.q3.a4" style="margin: 5px 16px 0 16px;" ng-change="userFB.feedback.q3.a4 ? (userFB.feedback.q3.a1=true?(userFB.feedback.q3.a2=true?(userFB.feedback.q3.a3=true):''):''):(userFB.feedback.q3.a1=false?'':(userFB.feedback.q3.a2=false?'':(userFB.feedback.q3.a3=false)))"> All of these
+														</div>
+														<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"></div>
+													</div>
+													<span ng-if="!(userFB.feedback.q3.a1 || userFB.feedback.q3.a2 || userFB.feedback.q3.a3 || userFB.feedback.q3.a4) && btn_press" style="color:red;">-- Kindly provide the above information --</span>
+												</div>
+												<!--<div class="form-group">
+													<label for="q4" class="control-label">4. Any new learning for yourself that you possibly had an idea about earlier but it got deeper through this exercise?</label>
+													<div class="input-prepend input-group">
+														<textarea rows="3" class="form-control" ng-model="userFB.feedback.q4" name="q4"></textarea>
+													</div>
+													<span ng-if="!userFB.feedback.q4 && btn_press" style="color:red;">-- Kindly provide the above information --</span>
+												</div>-->
+												<div class="form-group">
+													<label for="q5" class="control-label">4. How likely are you to recommend this assessment to your friends and colleagues?</label>
+													<div class="input-prepend input-group col-md-12" style="margin-left: 0px;">
+														<span class="material-icons" ng-click="userFB.feedback.q5 = 1;" ng-class="(userFB.feedback.q5>=1)?'checked':''" title="1">grade</span>
+														<span class="material-icons" ng-click="userFB.feedback.q5 = 2;" ng-class="(userFB.feedback.q5>=2)?'checked':''" title="2">grade</span>
+														<span class="material-icons" ng-click="userFB.feedback.q5 = 3;" ng-class="(userFB.feedback.q5>=3)?'checked':''" title="3">grade</span>
+														<span class="material-icons" ng-click="userFB.feedback.q5 = 4;" ng-class="(userFB.feedback.q5>=4)?'checked':''" title="4">grade</span>
+														<span class="material-icons" ng-click="userFB.feedback.q5 = 5;" ng-class="(userFB.feedback.q5>=5)?'checked':''" title="5">grade</span>
+														<span class="material-icons" ng-click="userFB.feedback.q5 = 6;" ng-class="(userFB.feedback.q5>=6)?'checked':''" title="6">grade</span>
+														<span class="material-icons" ng-click="userFB.feedback.q5 = 7;" ng-class="(userFB.feedback.q5>=7)?'checked':''" title="7">grade</span>
+														<span class="material-icons" ng-click="userFB.feedback.q5 = 8;" ng-class="(userFB.feedback.q5>=8)?'checked':''" title="8">grade</span>
+														<span class="material-icons" ng-click="userFB.feedback.q5 = 9;" ng-class="(userFB.feedback.q5>=9)?'checked':''" title="9">grade</span>
+														<span class="material-icons" ng-click="userFB.feedback.q5 = 10;" ng-class="(userFB.feedback.q5>=10)?'checked':''" title="10">grade</span>
+													</div>
+													<span ng-if="!userFB.feedback.q5 && btn_press" style="color:red;">-- Kindly provide the above information --</span>
+												</div>
+												<div class="form-group">
+													<label for="q6" class="control-label">5. What is it that you liked most in this exercise? Also, what is it that can be improved further?</label>
+													<div class="input-prepend input-group">
+														<textarea rows="3" class="form-control" ng-model="userFB.feedback.q6" name="q6"></textarea>
+													</div>
+													<span ng-if="!userFB.feedback.q6 && btn_press" style="color:red;">-- Kindly provide the above information --</span>
+												</div>
+												<div class="form-group">
+													<label for="q7" class="control-label">6. Did you face any difficulty in finding any of the Step(s) on the Portal?</label>
+													<div class="input-prepend input-group col-md-12" style="margin-left: 3px;">
+														<span class="material-icons" ng-click="userFB.feedback.q7 = 1;" ng-class="(userFB.feedback.q7==1)?'checked':''" title="everytime" style="margin-right: 80px;">thumb_down</span>
+														<span class="material-icons" ng-click="userFB.feedback.q7 = 2;" ng-class="(userFB.feedback.q7==2)?'checked':''" title="sometime">thumbs_up_down</span>
+														<span class="material-icons" ng-click="userFB.feedback.q7 = 3;" ng-class="(userFB.feedback.q7==3)?'checked':''" title="not at all" style="margin-left: 80px;">thumb_up</span>
+													</div>
+													<span ng-if="!userFB.feedback.q7 && btn_press" style="color:red;">-- Kindly provide the above information --</span>
+												</div>
+											</form>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							<span style="margin: 0 auto;">
+								<button class="btn btn-primary" ng-click="proceed()">Done</button>
+							</span>
+						</div>
+                    </div>
+
+            </div>
+        </div>
+   
+        </div>
+</div>

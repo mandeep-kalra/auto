@@ -78,6 +78,16 @@ router.route('/:id')
 
 });
 
+router.route('/feedback/:id')
+.get(function(req, res, next){
+    openUser.findOne({_id: sanitize(req.params.id)}, {'_id': false, 'feedback': true})
+    .exec(function(err, user){
+        if(err)
+            next(err);
+        res.status(200).json(user);
+    });
+});
+
 router.route('/reviewers/:id')
 .post(function(req, res, next){
     var body = sanitize(req.body);
