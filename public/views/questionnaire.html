@@ -47,7 +47,7 @@
 											</div>
 											
 											<div class="content-box-wrapper" style="font-size: 15px; margin: 0 5px;">
-												<span class="row" ng-repeat="ch in q.choices" style="padding: 10px;" ng-style="q.selected==ch.linked ? {'background':'#ccff90'}:{}" ng-click="q.selected=ch.linked">
+												<span class="row" ng-repeat="ch in q.choices" style="padding: 10px; cursor: pointer;" ng-style="q.selected==ch.linked ? {'background':'#ccff90'}:{}" ng-click="q.selected=ch.linked">
 													<input type="radio" ng-model="q.selected" value="{{ch.linked}}" style="margin-top: 5px;">
 													&nbsp;&nbsp;&nbsp;{{ch.statement}}
 												</span>

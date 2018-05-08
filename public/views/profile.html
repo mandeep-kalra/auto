@@ -142,7 +142,7 @@
 					
 			</div>
 -->
-			{{checkRel}}
+			
 			<div class="container">
 
 					<!-- Boostrap Tabs -->
@@ -191,13 +191,13 @@
 							<div class="col-xs-12 col-md-3">
 								<ul class="list-group">
 									<li class="mrg10B" ng-click="second3timer = true; checkRel[section_num-1] = true; section_num = 1;">
-										<a class="list-group-item" href="" ng-class="section_num == 1 ? 'back_active_panel':'bg_white'">
-											Professional Strengths - {{checkSectionFill(section_num)}}
+										<a class="list-group-item" href="" ng-class="section_num == 1 ? 'back_active_panel' : (checkSectionFill(1) ? 'back_panel':'bg_white')">
+											Professional Strengths
 											<i class="glyph-icon icon-angle-right mrg0A"></i>
 										</a>
 									</li>
 									<li class="mrg10B" ng-click="second3timer = true; checkRel[section_num-1] = true; checkSectionFill(section_num)?section_num = 2 : '';">
-										<a class="list-group-item" href="" ng-class="section_num == 2 ? 'back_active_panel':'bg_white'">
+										<a class="list-group-item" href="" ng-class="section_num == 2 ? 'back_active_panel' : (checkSectionFill(2) ? 'back_panel':'bg_white')">
 											Learning Needs
 											<i class="glyph-icon icon-angle-right mrg0A"></i>
 										</a>
