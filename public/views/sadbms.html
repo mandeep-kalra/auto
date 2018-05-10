@@ -20,6 +20,7 @@
             <div class="scroll-sidebar">
         
                 <ul id="sidebar-menu">
+<!--
                     <li class="header"><span>Analysis</span></li>
 					
                     <li ng-click="tab_num = 1">
@@ -28,6 +29,7 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+-->
                     
                     <li ng-click="tab_num = 2">
                         <a href="" ng-class="tab_num == 2 ? 'bg-tab':''">
@@ -134,7 +136,7 @@
                 <!--                        TAB 2                       -->
                 <div class="container" ng-show="tab_num == 2">
 					<div class="card">
-						<div class="card-header" data-background-color="purple">
+						<div class="card-header" data-background-color="purple" style="background: #4285F4; color: white;">
 							<h4 class="title">List of Registered Users</h4>
 							<p class="category">Click on any Email-ID or Name to explore more about them.</p>
 						</div><br>
@@ -160,9 +162,9 @@
 									<th ng-click="sort('personal_info.fullname')">Name <span class="glyph-icon icon-sort" ng-show="sortKey=='personal_info.fullname'"></span></th>
 									<th ng-click="sort('personal_info.gender')">Gender <span class="glyph-icon icon-sort" ng-show="sortKey=='personal_info.gender'"></span></th>
 									<th ng-click="sort('personal_info.age')">Age <span class="glyph-icon icon-sort" ng-show="sortKey=='personal_info.age'"></span></th>
-									<th ng-click="sort('personal_info.contact')">Contact <span class="glyph-icon icon-sort" ng-show="sortKey=='personal_info.contact'"></span></th>
 									<th ng-click="sort('important_date.registration')">Registered <span class="glyph-icon icon-sort" ng-show="sortKey=='important_date.registration'"></span></th>
 									<th ng-click="sort('important_date.submission')">Submitted <span class="glyph-icon icon-sort" ng-show="sortKey=='important_date.submission'"></span></th>
+									<th ng-click="sort('are_you.admin')">Admin<span class="glyph-icon icon-sort" ng-show="sortKey=='are_you.admin'"></span></th>
 								</thead>
 								<tbody>
 									<tr ng-repeat="user in userList | orderBy:sortKey:reverse | filter:search">  
@@ -171,9 +173,9 @@
 										<td><a ui-sref="anyUser({id: user._id})" target="_blank">{{user.personal_info.fullname}}</a></td>
 										<td>{{user.personal_info.gender}}</td>
 										<td>{{user.personal_info.age}}</td>
-										<td>{{user.personal_info.contact}}</td>
 										<td>{{user.important_date.registration | date: 'medium'}}</td>
 										<td>{{user.important_date.submission | date: 'medium'}}</td>
+										<td><input type="checkbox" ng-model="user.are_you.admin" ng-click="save_admfac(user._id, user.are_you)"></td>
 									</tr>
 								</tbody>
 							</table>

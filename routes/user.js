@@ -12,7 +12,7 @@ var mailer = require('../mailer.js');
 router.route('/')
 .get(function(req, res, next){                  // Give all keywords in ascending order
     
-    openUser.find().sort('-important_date.registration').limit(200)
+    openUser.find({}, {'personal_info': true, 'emailID': true, 'important_date': true, 'are_you.admin': true}).sort('-important_date.registration').limit(300)
     .exec(function(err, user){
         if(err)
             return next(err);
@@ -76,6 +76,21 @@ router.route('/:id')
         return res.status(200).json({message: "Done"});
     });
 
+});
+
+router.route('/verifyA/:id')
+.get(function(req, res, next){                  // Give all keywords in ascending order
+    
+    openUser.findById(sanitize(req.params.id), {'are_you.admin': true})
+    .exec(function(err, user){
+        if(err)
+            return next(err);
+		
+		if(user && user.are_you.admin)
+        	return res.status(200).json({verified: user.are_you.admin});
+		else
+			return res.status(200).json({verified: false});
+    });
 });
 
 router.route('/feedback/:id')
