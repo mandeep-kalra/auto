@@ -1,0 +1,116 @@
+<style>
+	.tab_bg {
+		background: #ede7f6;
+		padding: 5px 0px;
+		border: 5px dotted #dcd6e5;
+		border-radius: 5px;
+		margin: 5px auto;
+		font-family: "Courier New", Courier, monospace;
+		font-weight: bold;
+		text-transform: uppercase;
+		text-align: center;
+		cursor: move;
+		font-size: 16px;
+	}
+</style>
+
+<span ng-show="loading">
+	<div class="spinner">
+		<div class="bounce1"></div>
+		<div class="bounce2"></div>
+		<div class="bounce3"></div>
+	</div>
+</span>
+
+<div id="sb-site" ng-show="!loading">
+
+	<div style="display: block; width: 35%; margin: 0 auto; z-index: 10000;" ng-if="info_statement" class="w3-animate-top">
+		<div class="alert alert-success alert-with-icon" data-notify="container" style="position: fixed; margin-top: 80px; width: 465px; text-align: center;">
+			<i data-notify="icon" class="material-icons">info</i>
+			<span data-notify="message">{{info_statement}}</span>
+		</div>
+	</div>
+
+	<div style="display: block; width: 22%; margin: 0 auto; z-index: 10000;" ng-if="!online" class="w3-animate-top">
+		<div class="alert alert-danger alert-with-icon" data-notify="container" style="position: fixed; margin-top: 80px; width: 300px; text-align: center;">
+			<i data-notify="icon" class="material-icons">info</i>
+			<span data-notify="message">Connection Error !</span>
+		</div>
+	</div>
+
+	<div class="panel panel-body row" style="background: #42a5f5;">
+		<div class="col-xs-12" style="text-align: center; font-size: 20px; font-weight: bold; color: white;">{{userData.personal_info.fullname}}</div>
+	</div>
+
+	<div id="page-wrapper">
+
+		<div id="page-content-wrapper">
+			<div>
+
+				<div class="container" ng-if="!submitDone">
+
+					<div class="panel">
+						<div class="panel-body">
+
+							<div style="margin-bottom: 20px; padding: 0 50px;">
+								<h3 style="font-weight:bold; padding-bottom: 10px;">Instructions for taking this exercise</h3>
+
+								<h4 style="line-height: 150%;">
+									You have to rank a set of 18 adjectives that describe you AS YOU ARE. Detailed instructions are given below.
+									<ol>
+										<li>The adjectives you see stacked in a column below can be moved UP or DOWN by using the mouse and dragging
+											them - one adjective at a time.</li>
+										<li>Choose the adjective that in your view best describes you AS YOU ARE and stack it - right on top of the
+											list.</li>
+										<li>Choose another adjective that describes you next best, and move it below the one placed right on top.</li>
+										<li>Repeat this process till you have arranged all 18 adjectives in sequence, the word on top of the list
+											being closest to describing you as you see yourself, and the word at the bottom describing you the least in
+											relation to the other words.</li>
+										<li>After completion, press the submit button at the bottom.</li>
+									</ol>
+								</h4>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-offset-3 col-sm-6" dnd-list="item.cards" dnd-drop="dropCallback(index, item, dragArray)">
+									<div class="row col-sm-12" ng-repeat="item in dragArray" dnd-draggable="item" dnd-effect-allowed="move">
+										<div class="col-sm-1" style="margin-top: 8px; text-align:right;">{{$index+1}}</div>
+										<div class="col-sm-10 tab_bg">
+											{{item}}
+										</div>
+										<div class="col-sm-1" style="margin-top: 4px;">
+											<i class="material-icons" title="Shift 1 Up" style="cursor: pointer; position: absolute;" ng-show="!$first"
+											 ng-click="shiftUp($index)">arrow_drop_up
+											</i>
+											<br>
+											<i class="material-icons" title="Shift 1 Down" style="cursor: pointer;  position: absolute; margin-top: -8px;"
+											 ng-show="!$last" ng-click="shiftDown($index)">arrow_drop_down</i>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3"></div>
+							</div>
+							<br><br>
+							<div class="row">
+								<div class="col-md-12" style="text-align:center;" style="padding: 20px;">
+									<button class="btn btn-danger" ng-click="updateUser()">Submit</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="row" ng-if="submitDone">
+					<div class="col-md-offset-3 col-sm-6">
+						<div class="jumbotron">
+							<h1>Thank-you!</h1>
+							<p>For your submission.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

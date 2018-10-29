@@ -1,12 +1,12 @@
 'use strict';
 
 module.exports = {
-    "development":{
+    "development": {
         'secretKey': '1HE91-QM30X-ZY2S5-K20OA-BCW0Z-4EV2C',
-        'mongoUrl' : 'mongodb://lavish:idiscoverdb@ds161459.mlab.com:61459/auto-idiscover'
+        'mongoUrl': 'mongodb://idiscover:idiscover123@ds153890.mlab.com:53890/automation'
     },
-    "production":{
+    "production": {
         'secretKey': '1HE91-QM30X-ZY2S5-K20OA-BCW0Z-4EV2C',
-        'mongoUrl' : 'mongodb://lavish:idiscoverdb@ds161459.mlab.com:61459/auto-idiscover'
+        'mongoUrl': 'mongodb://idiscover:idiscover123@ds153890.mlab.com:53890/automation'
     }
 };

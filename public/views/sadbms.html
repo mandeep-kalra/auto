@@ -1,5 +1,5 @@
 <style>
-	.bg-tab {
+    .bg-tab {
 		background-color: white;
 	}
 </style>
@@ -9,18 +9,18 @@
         <div class="bounce1"></div>
         <div class="bounce2"></div>
         <div class="bounce3"></div>
-    </div>    
+    </div>
 </span>
 
 <div id="sb-site" ng-show="!loading" style="background-color: #fff;">
-   
+
     <div id="page-wrapper">
-        
+
         <div id="page-sidebar">
             <div class="scroll-sidebar">
-        
+
                 <ul id="sidebar-menu">
-<!--
+                    <!--
                     <li class="header"><span>Analysis</span></li>
 					
                     <li ng-click="tab_num = 1">
@@ -30,25 +30,25 @@
                         </a>
                     </li>
 -->
-                    
+
                     <li ng-click="tab_num = 2">
                         <a href="" ng-class="tab_num == 2 ? 'bg-tab':''">
                             <i class="glyph-icon icon-th-list"></i>
                             <span>List Users</span>
                         </a>
                     </li>
-					
+
                     <li class="header"><span>Questionnaire</span></li>
-					
+
                     <li ng-click="tab_num = 3">
                         <a href="" ng-class="tab_num == 3 ? 'bg-tab':''">
                             <i class="glyph-icon icon-dashboard"></i>
                             <span>Edit Questionnaire</span>
                         </a>
                     </li>
-					
+
                     <li class="header"><span>Polarities</span></li>
-					
+
                     <li ng-click="tab_num = 4">
                         <a href="" ng-class="tab_num == 4 ? 'bg-tab':''">
                             <i class="glyph-icon icon-dashboard"></i>
@@ -60,16 +60,16 @@
 
             </div>
         </div>
-		
+
         <div id="page-content-wrapper">
             <div id="page-content-margin">
                 <!--                        TAB 1                           -->
-				
+
                 <div class="container" ng-show="tab_num == 1">
-					
+
                     <div class="row row-bg">
                         <div class="col-sm-6 col-md-4">
-							<div class="card card-stats" ng-click="tab_num = 2">
+                            <div class="card card-stats" ng-click="tab_num = 2">
                                 <div class="card-header" data-background-color="blue">
                                     <i class="material-icons">group</i>
                                 </div>
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4">
-							<div class="card card-stats">
+                            <div class="card card-stats">
                                 <div class="card-header" data-background-color="green">
                                     <i class="material-icons">person_add</i>
                                 </div>
@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4">
-							<div class="card card-stats">
+                            <div class="card card-stats">
                                 <div class="card-header" data-background-color="orange">
                                     <i class="material-icons">adb</i>
                                 </div>
@@ -109,10 +109,11 @@
                         </div>
                     </div>
                     <br>
-					
+
                     <div class="col-sm-12">
-                        <center><label for="profile_num" style="font-size: 20px; color: #6dadbd;">Numbers of Different Profiles</label></center>
-                        <div class="col-sm-6" style="background-color:#fcfcfc;border-top:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9; margin: 20px auto; padding: 20px 10px;">                            
+                        <center><label for="profile_num" style="font-size: 20px; color: #6dadbd;">Numbers of Different
+                                Profiles</label></center>
+                        <div class="col-sm-6" style="background-color:#fcfcfc;border-top:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9; margin: 20px auto; padding: 20px 10px;">
                             <canvas id="profile_num" class="chart chart-bar" chart-data="data_profile_num" chart-labels="label_profile_num"></canvas>
                             <center>Bar Graph</center>
                         </div>
@@ -120,8 +121,9 @@
                             <canvas id="profile_num" class="chart chart-pie" chart-data="data_profile_num" chart-labels="label_profile_num"></canvas>
                             <center>Pie Chart</center>
                         </div>
-                        
-                        <center><label for="reg12" style="font-size: 20px; color: #6dadbd;">Registrations in Last 12 Months</label></center>
+
+                        <center><label for="reg12" style="font-size: 20px; color: #6dadbd;">Registrations in Last 12
+                                Months</label></center>
                         <div class="col-sm-6" style="background-color:#fcfcfc;border-top:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9; margin: 20px auto; padding: 20px 10px;">
                             <canvas id="reg12" class="chart chart-line" chart-data="data_reg_final" chart-labels="label_reg"></canvas>
                             <center>Line Graph</center>
@@ -131,184 +133,206 @@
                             <center>Bar Graph</center>
                         </div>
                     </div>
-                    
+
                 </div>
                 <!--                        TAB 2                       -->
                 <div class="container" ng-show="tab_num == 2">
-					<div class="card">
-						<div class="card-header" data-background-color="purple" style="background: #4285F4; color: white;">
-							<h4 class="title">List of Registered Users</h4>
-							<p class="category">Click on any Email-ID or Name to explore more about them.</p>
-						</div><br>
-                           
-						<div class="card-content table-responsive">
-							<!-- Search Here -->
-							<div class="input-group">
-								<div class="input-group-addon" style="background-color: #fafafa;">
-									<i class="glyph-icon icon-search"></i>
-								</div>
-								<input type="search" class="form-control col-md-11" placeholder="Search" ng-model="search">
-								<div class="input-group-addon" style="border: 0px;">
-									<b>Found {{(userList | filter:search).length}} of {{userList.length}}</b>
-								</div>
-										
-							</div><br><br>
-							
-							<!-- Search End -->
-							<table class="table">
-								<thead class="text-primary">
-									<th>#</th>
-									<th ng-click="sort('emailID')">Email-ID <span class="glyph-icon icon-sort" ng-show="sortKey=='username'" ng-class="{'glyph-icon-chevron-up':reverse,'glyph-icon-chevron-down':!reverse}"></span></th>
-									<th ng-click="sort('personal_info.fullname')">Name <span class="glyph-icon icon-sort" ng-show="sortKey=='personal_info.fullname'"></span></th>
-									<th ng-click="sort('personal_info.gender')">Gender <span class="glyph-icon icon-sort" ng-show="sortKey=='personal_info.gender'"></span></th>
-									<th ng-click="sort('personal_info.age')">Age <span class="glyph-icon icon-sort" ng-show="sortKey=='personal_info.age'"></span></th>
-									<th ng-click="sort('important_date.registration')">Registered <span class="glyph-icon icon-sort" ng-show="sortKey=='important_date.registration'"></span></th>
-									<th ng-click="sort('important_date.submission')">Submitted <span class="glyph-icon icon-sort" ng-show="sortKey=='important_date.submission'"></span></th>
-									<th ng-click="sort('are_you.admin')">Admin<span class="glyph-icon icon-sort" ng-show="sortKey=='are_you.admin'"></span></th>
-								</thead>
-								<tbody>
-									<tr ng-repeat="user in userList | orderBy:sortKey:reverse | filter:search">  
-										<td>{{$index + 1}}.</td>
-										<td><a ui-sref="anyUser({id: user._id})" target="_blank">{{user.emailID}}</a></td>
-										<td><a ui-sref="anyUser({id: user._id})" target="_blank">{{user.personal_info.fullname}}</a></td>
-										<td>{{user.personal_info.gender}}</td>
-										<td>{{user.personal_info.age}}</td>
-										<td>{{user.important_date.registration | date: 'medium'}}</td>
-										<td>{{user.important_date.submission | date: 'medium'}}</td>
-										<td><input type="checkbox" ng-model="user.are_you.admin" ng-click="save_admfac(user._id, user.are_you)"></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					
+                    <div class="card">
+                        <div class="card-header" data-background-color="purple" style="background: #4285F4; color: white;">
+                            <h4 class="title">List of Registered Users</h4>
+                            <p class="category">Click on any Email-ID or Name to explore more about them.</p>
+                        </div><br>
+                        <!-- <button ng-click="downloadExcel()">Donwload polarities</button> -->
+                        <div class="card-content table-responsive">
+                            <!-- Search Here -->
+                            <div class="input-group">
+                                <div class="input-group-addon" style="background-color: #fafafa;">
+                                    <i class="glyph-icon icon-search"></i>
+                                </div>
+                                <input type="search" class="form-control col-md-11" placeholder="Search" ng-model="search">
+                                <div class="input-group-addon" style="border: 0px;">
+                                    <b>Found {{(userList | filter:search).length}} of {{userList.length}}</b>
+                                </div>
+
+                            </div><br><br>
+
+                            <!-- Search End -->
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <th>#</th>
+                                    <th ng-click="sort('emailID')">Email-ID <span class="glyph-icon icon-sort" ng-show="sortKey=='username'"
+                                            ng-class="{'glyph-icon-chevron-up':reverse,'glyph-icon-chevron-down':!reverse}"></span></th>
+                                    <th ng-click="sort('personal_info.fullname')">Name <span class="glyph-icon icon-sort"
+                                            ng-show="sortKey=='personal_info.fullname'"></span></th>
+                                    <th ng-click="sort('personal_info.gender')">Gender <span class="glyph-icon icon-sort"
+                                            ng-show="sortKey=='personal_info.gender'"></span></th>
+                                    <th ng-click="sort('personal_info.age')">Age <span class="glyph-icon icon-sort"
+                                            ng-show="sortKey=='personal_info.age'"></span></th>
+                                    <th ng-click="sort('important_date.registration')">Registered <span class="glyph-icon icon-sort"
+                                            ng-show="sortKey=='important_date.registration'"></span></th>
+                                    <th ng-click="sort('important_date.submission')">Submitted <span class="glyph-icon icon-sort"
+                                            ng-show="sortKey=='important_date.submission'"></span></th>
+                                    <th ng-click="sort('are_you.admin')">Admin<span class="glyph-icon icon-sort"
+                                            ng-show="sortKey=='are_you.admin'"></span></th>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="user in userList | orderBy:sortKey:reverse | filter:search">
+                                        <td>{{$index + 1}}.</td>
+                                        <td><a ui-sref="anyUser({id: user._id})" target="_blank">{{user.emailID}}</a></td>
+                                        <td><a ui-sref="anyUser({id: user._id})" target="_blank">{{user.personal_info.fullname}}</a></td>
+                                        <td>{{user.personal_info.gender}}</td>
+                                        <td>{{user.personal_info.age}}</td>
+                                        <td>{{user.important_date.registration | date: 'medium'}}</td>
+                                        <td>{{user.important_date.submission | date: 'medium'}}</td>
+                                        <td><input type="checkbox" ng-model="user.are_you.admin" ng-click="save_admfac(user._id, user.are_you)"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
-				
+
                 <!--                        TAB 3                           -->
                 <div class="container" ng-show="tab_num == 3">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <h1 style="text-align:center; font-weight:bold;" class="title-hero">
-                                   Questionnaire
-                                </h1>
-                                <div class="example-box-wrapper">
-                                    <div id="form-wizard-3" class="form-wizard">
-                                        
-                                        <div class="tab-content">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <h1 style="text-align:center; font-weight:bold;" class="title-hero">
+                                Questionnaire
+                            </h1>
+                            <div class="example-box-wrapper">
+                                <div id="form-wizard-3" class="form-wizard">
 
-											<div class="content-box" ng-repeat="q in questions">
-												<h4 class="content-box-header bg-blue">
-													<input type="text" ng-model="q.question_id" size="20%" style="text-align: center;">. <input type="text" ng-model="q.question" size="80%" style="text-align: center;">
-												</h4><br>
-												
-												<div class="content-box-wrapper" style="font-size: 15px; margin: 0 5px;">
-                                                    <input type="text" ng-model="q.choices[0].statement_id" size="20%"> <input type="text" ng-model="q.choices[0].statement" size="80%"><br><br>
-													Linking: <input type="text" ng-model="q.choices[0].linked"><br><br>
-                                                   	<input type="text" ng-model="q.choices[1].statement_id" size="20%"> <input type="text" ng-model="q.choices[1].statement" size="80%"><br><br>
-													Linking: <input type="text" ng-model="q.choices[1].linked">
-												</div>
-													<button class="btn btn-success" ng-click="updateQues(q._id, q)" style="color: white; width: 100%;">Update</button>
-											</div>
+                                    <div class="tab-content">
 
+                                        <div class="content-box" ng-repeat="q in questions">
+                                            <h4 class="content-box-header bg-blue">
+                                                <input type="text" ng-model="q.question_id" size="20%" style="text-align: center;">.
+                                                <input type="text" ng-model="q.question" size="80%" style="text-align: center;">
+                                            </h4><br>
+
+                                            <div class="content-box-wrapper" style="font-size: 15px; margin: 0 5px;">
+                                                <input type="text" ng-model="q.choices[0].statement_id" size="20%">
+                                                <input type="text" ng-model="q.choices[0].statement" size="80%"><br><br>
+                                                Linking: <input type="text" ng-model="q.choices[0].linked"><br><br>
+                                                <input type="text" ng-model="q.choices[1].statement_id" size="20%">
+                                                <input type="text" ng-model="q.choices[1].statement" size="80%"><br><br>
+                                                Linking: <input type="text" ng-model="q.choices[1].linked">
+                                            </div>
+                                            <button class="btn btn-success" ng-click="updateQues(q._id, q)" style="color: white; width: 100%;">Update</button>
                                         </div>
-										
+
                                     </div>
+
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
-				
+
                 <!--                        TAB 4                           -->
                 <div class="container" ng-show="tab_num == 4">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <h1 style="text-align:center; font-weight:bold;" class="title-hero">
-                                   Polarities
-                                </h1>
-                                <div class="example-box-wrapper">
-                                    <div id="form-wizard-3" class="form-wizard">
-                                        
-                                        <div class="tab-content col-md-12 row">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <h1 style="text-align:center; font-weight:bold;" class="title-hero">
+                                Polarities
+                            </h1>
+                            <div class="example-box-wrapper">
+                                <div id="form-wizard-3" class="form-wizard">
 
-											<div class="content-box col-md-12 row" ng-repeat="p in polars">
-												<h4 class="content-box-header bg-blue col-md-12">
-													<input type="text" ng-model="p.polar_id" class="form-control" style="text-align: center;">
-												</h4><br>
-												
-												<div class="content-box-wrapper col-md-12 row" style="font-size: 15px; margin: 0 5px;">
-                                                    <div class="col-md-12">
-														Strength: <input type="text" class="form-control" ng-model="p.strength" size="100%">
-													</div>
-													<div class="col-md-12 row panel-layout" ng-repeat="md in p.mini_strengths">
-														<div class="col-md-12 row panel-box">
-															<div class="col-md-offset-11 col-md-1">
-																<i class="material-icons" style="float: right;" ng-click="removeMS($parent.$index, $index)">clear</i>
-															</div>
+                                    <div class="tab-content col-md-12 row">
 
-															<div class="col-md-12 row panel-content image-box">
+                                        <div class="content-box col-md-12 row" ng-repeat="p in polars">
+                                            <h4 class="content-box-header bg-blue col-md-12">
+                                                <input type="text" ng-model="p.polar_id" class="form-control" style="text-align: center;">
+                                            </h4><br>
 
-																<div class="col-md-12 row image-content">
+                                            <div class="content-box-wrapper col-md-12 row" style="font-size: 15px; margin: 0 5px;">
+                                                <div class="col-md-12">
+                                                    Strength: <input type="text" class="form-control" ng-model="p.strength"
+                                                        size="100%">
+                                                </div>
+                                                <div class="col-md-12 row panel-layout" ng-repeat="md in p.mini_strengths">
+                                                    <div class="col-md-12 row panel-box">
+                                                        <div class="col-md-offset-11 col-md-1">
+                                                            <i class="material-icons" style="float: right;" ng-click="removeMS($parent.$index, $index)">clear</i>
+                                                        </div>
 
-																	<div class="col-md-12 meta-box meta-box-bottom">
-																		<h3><input type="text" ng-model="md.mini_id" style="text-align:center; color: #FF0000;"> - <input type="text" ng-model="md.mini_statement" style="text-align:center; color: #FF0000;"> </h3>                                           
-																	</div>
+                                                        <div class="col-md-12 row panel-content image-box">
 
-																</div>
-																<img src="./assets/image-resources/blurred-bg/blurred-bg-16.jpg" alt="">
+                                                            <div class="col-md-12 row image-content">
 
-															</div>
+                                                                <div class="col-md-12 meta-box meta-box-bottom">
+                                                                    <h3><input type="text" ng-model="md.mini_id" style="text-align:center; color: #FF0000;">
+                                                                        - <input type="text" ng-model="md.mini_statement"
+                                                                            style="text-align:center; color: #FF0000;">
+                                                                    </h3>
+                                                                </div>
 
-														</div>
-													</div>
-													<div class="col-md-12" style="text-align: center; margin-bottom: 10px;">
-														<button class="btn btn-info pull-right" ng-click="addMoreStrengths($index)">+ Add Strengths</button>
-													</div>
-													
-													<div class="col-md-12">
-                                                    	Learning: <input type="text" class="form-control" ng-model="p.learning" size="100%">
-													</div>
-													<div class="col-md-12 row panel-layout" ng-repeat="md in p.mini_learnings">
-														<div class="col-md-12 row panel-box">
-															<div class="col-md-offset-11 col-md-1">
-																<i class="material-icons" style="float: right;" ng-click="removeML($parent.$index, $index)">clear</i>
-															</div>
+                                                            </div>
+                                                            <img src="./assets/image-resources/blurred-bg/blurred-bg-16.jpg"
+                                                                alt="">
 
-															<div class="col-md-12 row panel-content image-box">
+                                                        </div>
 
-																<div class="col-md-12 row image-content">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12" style="text-align: center; margin-bottom: 10px;">
+                                                    <button class="btn btn-info pull-right" ng-click="addMoreStrengths($index)">+
+                                                        Add Strengths</button>
+                                                </div>
 
-																	<div class="col-md-12 meta-box meta-box-bottom">
-																		<h3><input type="text" ng-model="md.mini_id" style="text-align:center; color: #FF0000;"> - <input type="text" ng-model="md.mini_statement" style="text-align:center; color: #FF0000;"> </h3>                                           
-																	</div>
+                                                <div class="col-md-12">
+                                                    Learning: <input type="text" class="form-control" ng-model="p.learning"
+                                                        size="100%">
+                                                </div>
+                                                <div class="col-md-12 row panel-layout" ng-repeat="md in p.mini_learnings">
+                                                    <div class="col-md-12 row panel-box">
+                                                        <div class="col-md-offset-11 col-md-1">
+                                                            <i class="material-icons" style="float: right;" ng-click="removeML($parent.$index, $index)">clear</i>
+                                                        </div>
 
-																</div>
-																<img src="./assets/image-resources/blurred-bg/blurred-bg-16.jpg" alt="">
+                                                        <div class="col-md-12 row panel-content image-box">
 
-															</div>
+                                                            <div class="col-md-12 row image-content">
 
-														</div>
-													</div>
-													<div class="col-md-12" style="text-align: center; margin-bottom: 10px;">
-														<button class="btn btn-info pull-right" ng-click="addMoreLearnings($index)">+ Add Learnings</button>
-													</div>
-												</div>
-												
-												
-												
-												<div class="col-md-12">
-													<button class="btn btn-success" ng-click="updatePolar(p._id, p)" style="color: white; width: 100%;">Update</button>
-												</div>
-													
-											</div>
+                                                                <div class="col-md-12 meta-box meta-box-bottom">
+                                                                    <h3><input type="text" ng-model="md.mini_id" style="text-align:center; color: #FF0000;">
+                                                                        - <input type="text" ng-model="md.mini_statement"
+                                                                            style="text-align:center; color: #FF0000;">
+                                                                    </h3>
+                                                                </div>
+
+                                                            </div>
+                                                            <img src="./assets/image-resources/blurred-bg/blurred-bg-16.jpg"
+                                                                alt="">
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12" style="text-align: center; margin-bottom: 10px;">
+                                                    <button class="btn btn-info pull-right" ng-click="addMoreLearnings($index)">+
+                                                        Add Learnings</button>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-md-12">
+                                                <button class="btn btn-success" ng-click="updatePolar(p._id, p)" style="color: white; width: 100%;">Update</button>
+                                            </div>
 
                                         </div>
-										
+
                                     </div>
+
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
-				<!--                        TABS END                           -->
+                <!--                        TABS END                           -->
             </div>
         </div>
     </div>

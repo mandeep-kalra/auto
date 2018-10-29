@@ -29,6 +29,18 @@ db.once('open', function () {
 
 var app = express();
 
+//CORS middleware
+var allowCrossDomain = function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', '*');
+
+  // fs.appendFile(__dirname + '/logs.txt', new Date() + '\r\n' + req.url + '\r\n' + JSON.stringify(req.body) + '\r\n\r\n');
+
+  next();
+}
+app.use(allowCrossDomain);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

@@ -4,11 +4,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var subSchema = new Schema({
-    mini_id: {
-        type: String,
-        default: "P__S__(S/L)M__"		//polarity XX, Strenth XX, Strength/Learning, Mini-statement XX
-    },
-    mini_statement: String,
+	mini_id: {
+		type: String,
+		default: "P__S__(S/L)M__"		//polarity XX, Strenth XX, Strength/Learning, Mini-statement XX
+	},
+	mini_statement: String,
 	relate: String,
 	mini_rating: Number
 });
@@ -18,12 +18,12 @@ var polarities = new Schema({
 		type: String,
 		default: 'v1.0'
 	},
-    polar_id: {
+	polar_id: {
 		type: String,
 		defualt: 'P__S__'				//polarity XX, Strenth XX
 	},
-    strength: String,
-    learning: String,
+	strength: String,
+	learning: String,
 	mini_strengths: [subSchema],
 	mini_learnings: [subSchema],
 	strength_rating: Number,
@@ -39,7 +39,7 @@ var polarities = new Schema({
 });
 
 var choiceSchema = new Schema({
-    statement_id: {
+	statement_id: {
 		type: String,
 		defualt: 'Q__C__'			//question XX, Choice XX
 	},
@@ -55,24 +55,24 @@ var questionS = new Schema({
 		type: String,
 		default: 'v1.0'
 	},
-    question_id: {
+	question_id: {
 		type: String,
 		defualt: 'Q__'				//question XX
 	},
-    question: String,
-    choices: [choiceSchema],
+	question: String,
+	choices: [choiceSchema],
 	selected: String
 });
 
 var userSchema = new Schema({
-    emailID: {
-        type: String,
-        required: true
-    },
+	emailID: {
+		type: String,
+		required: true
+	},
 	personal_info: {
 		fullname: String,
 		age: Number,
-    	gender: String,
+		gender: String,
 		experience: {
 			type: String,
 			default: 'Work Experience'
@@ -80,23 +80,23 @@ var userSchema = new Schema({
 		profession: String,
 		city: String
 	},
-    are_you: {
-        admin: {
-            type: Boolean,
-            default: false
-        }
-    },
-    important_date: {
-        registration: {
-            type: Date,
-            default: Date.now
-        },
-        submission: {
-            type: Date,
-            default: Date.now
-        }
-    },
-    device_details: Object,
+	are_you: {
+		admin: {
+			type: Boolean,
+			default: false
+		}
+	},
+	important_date: {
+		registration: {
+			type: Date,
+			default: Date.now
+		},
+		submission: {
+			type: Date,
+			default: Date.now
+		}
+	},
+	device_details: Object,
 	questionnaire: [questionS],
 	polarities: [polarities],
 	profile: {
@@ -109,13 +109,13 @@ var userSchema = new Schema({
 			learning: Array
 		}
 	},
-	peer_reviewers: [new Schema({name: String, emailid: String, relationship: String, date: Date})],
-	peer_reviews: [new Schema({emailid: String, reviews: Array, last_modified: Date, recommendation: String})],
-    feedback: {
-        submitted: {
-            type: Boolean,
-            default: false
-        },
+	peer_reviewers: [new Schema({ name: String, emailid: String, relationship: String, date: Date })],
+	peer_reviews: [new Schema({ emailid: String, reviews: Array, last_modified: Date, recommendation: String })],
+	feedback: {
+		submitted: {
+			type: Boolean,
+			default: false
+		},
 		q1: String,
 		q2: String,
 		q2_detailed: String,
@@ -133,7 +133,8 @@ var userSchema = new Schema({
 		q5: String,
 		q6: String,
 		q7: String
-    }
+	},
+	dragArray: Array
 });
 
 module.exports = mongoose.model('Users', userSchema);
