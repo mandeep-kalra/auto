@@ -57,11 +57,11 @@ router.route('/')
 router.route('/:id')
 	.get(function (req, res, next) {                  // Give all keywords in ascending order
 
-		openUser.findById(sanitize(req.params.id), { 'personal_info.fullname': true, questionnaire: true, profile: true, polarities: true, 'peer_reviews.recommendation': true, 'peer_reviews.last_modified': true, 'peer_reviews.emailid': true, 'peer_reviewers.name': true, 'peer_reviewers.emailid': true })
+		openUser.findById(sanitize(req.params.id), { 'personal_info.fullname': true, questionnaire: true, profile: true, polarities: true, 'peer_reviews.recommendation': true, 'peer_reviews.last_modified': true, 'peer_reviews.emailid': true, 'peer_reviewers.name': true, 'peer_reviewers.emailid': true, dragArray: true })
 			.exec(function (err, user) {
 				if (err)
 					return next(err);
-				res.status(200).json(user);
+				return res.status(200).json(user);
 			});
 	})
 

@@ -69,8 +69,9 @@
 			<div class="container-fluid">
 				<div class="container">
 					<div class="row">
-						<div style="margin: 20px auto 10px auto; text-align: center;" ng-init="menu = 0">
+						<div style="margin: 20px auto 10px auto; text-align: center;" ng-init="menu = 2">
 							<ul class="nav">
+								<li ng-class="menu == 2 ? 'active_tab' : '' "><a href="" ng-click="menu = 2">Drag-n-Drop Questionnaire</a></li>
 								<li ng-class="menu == 0 ? 'active_tab' : '' "><a href="" ng-click="menu = 0">Questionnaire Analysis</a></li>
 								<li ng-class="menu == 1 ? 'active_tab' : '' "><a href="" ng-click="menu = 1">Trueself Profile View</a></li>
 							</ul>
@@ -248,6 +249,24 @@
 								</div>
 
 							</div>
+						</div>
+
+						<!--		TAB 2		-->
+						<div id="page-content" style="margin-bottom: 30px;" ng-show="menu == 2">
+							<div class="row">
+								<div class="col-md-offset-4 col-md-4">
+									<table class="table table-bordered table-hover" style="color: #333;">
+										<tbody>
+											<tr ng-repeat="item in user.dragArray">
+												<td>
+													{{$index+1}} <span style="float: right;">{{item}}</span>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
 						</div>
 
 						<!--											END TABS												-->

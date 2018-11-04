@@ -12,6 +12,11 @@
 		cursor: move;
 		font-size: 16px;
 	}
+
+	.active {
+		background: #f8bbd0;
+		border-color: #e7aabf;
+	}
 </style>
 
 <span ng-show="loading">
@@ -23,13 +28,13 @@
 </span>
 
 <div id="sb-site" ng-show="!loading">
-
+	<!-- 
 	<div style="display: block; width: 35%; margin: 0 auto; z-index: 10000;" ng-if="info_statement" class="w3-animate-top">
 		<div class="alert alert-success alert-with-icon" data-notify="container" style="position: fixed; margin-top: 80px; width: 465px; text-align: center;">
 			<i data-notify="icon" class="material-icons">info</i>
 			<span data-notify="message">{{info_statement}}</span>
 		</div>
-	</div>
+	</div> -->
 
 	<div style="display: block; width: 22%; margin: 0 auto; z-index: 10000;" ng-if="!online" class="w3-animate-top">
 		<div class="alert alert-danger alert-with-icon" data-notify="container" style="position: fixed; margin-top: 80px; width: 300px; text-align: center;">
@@ -72,10 +77,10 @@
 							</div>
 
 							<div class="row">
-								<div class="col-sm-offset-3 col-sm-6" dnd-list="item.cards" dnd-drop="dropCallback(index, item, dragArray)">
+								<div class="col-sm-offset-3 col-sm-6" dnd-list="item" dnd-drop="dropCallback(index, item, dragArray)">
 									<div class="row col-sm-12" ng-repeat="item in dragArray" dnd-draggable="item" dnd-effect-allowed="move">
 										<div class="col-sm-1" style="margin-top: 8px; text-align:right;">{{$index+1}}</div>
-										<div class="col-sm-10 tab_bg">
+										<div class="col-sm-10 tab_bg" ng-class="info_statement && globalI!=-1 && globalI==$index ? 'active':''">
 											{{item}}
 										</div>
 										<div class="col-sm-1" style="margin-top: 4px;">
